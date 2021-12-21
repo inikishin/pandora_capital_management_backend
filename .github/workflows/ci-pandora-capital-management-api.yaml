@@ -41,4 +41,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         source: "manage.py"
-        target: "/www/api.pandoracapitalmanagement.ru/manage.py"
+        target: "www/api.pandoracapitalmanagement.ru"
