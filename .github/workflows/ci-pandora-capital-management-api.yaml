@@ -23,3 +23,5 @@ jobs:
       run: |
         echo "Python versions"
         ls -1 /usr/bin/python* | grep '[2-3].[0-9]$'
+        python --version
+        python3 --version
