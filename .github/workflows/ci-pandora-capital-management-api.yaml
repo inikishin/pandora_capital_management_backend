@@ -13,5 +13,13 @@ jobs:
     - name: Start CI process
       run: | 
         echo "Start CI process"
-        echo "Listing files"
-        ls
+        
+    - name: Listing files
+      run: | 
+        echo "Listing files:"
+        ls -al
+        
+    - name: Python versions
+    - run: |
+        echo "Python versions"
+        ls -1 /usr/bin/python* | grep '[2-3].[0-9]$'
