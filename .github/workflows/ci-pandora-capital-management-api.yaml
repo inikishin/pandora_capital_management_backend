@@ -42,3 +42,4 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         source: "pandora_capital_management_backend"
         target: "www/api.pandoracapitalmanagement.ru"
+        overwrite: true
