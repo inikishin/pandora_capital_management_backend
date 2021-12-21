@@ -4,12 +4,13 @@ on:
   push:
     branches: [ master ]
     
-jobs:
-  install:
-    name: Install 
+jobs:    
+        
+  deploy:
+    name: Deploy project
     runs-on: ubuntu-latest
     
-    steps: 
+    steps:
       - name: Start CI process
         run: | 
           echo "Start CI process"
@@ -21,26 +22,14 @@ jobs:
           python --version
           python3 --version
           
-  build:
-    name: Build project
-    needs: install
-    runs-on: ubuntu-latest
-    
-    steps:        
-    - name: Checkout project from GitHub
-      uses: actions/checkout@v2
-      
-    - name: Listing files
-      run: | 
-        echo "Listing files:"
-        ls -al
-        
-  deploy:
-    name: Deploy project
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
+      - name: Checkout project from GitHub
+        uses: actions/checkout@v2
+
+      - name: Listing files
+        run: | 
+          echo "Listing files:"
+          ls -al
+          
       - name: create file for server restart
         run: |
           touch ".restart-app"
@@ -56,6 +45,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: "pandora_capital_management_backend"
+          source: "*"
           target: "www/api.pandoracapitalmanagement.ru"
           overwrite: true
