@@ -3,6 +3,7 @@ name: ci-pandora-capital-management-api
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:  
 
 jobs:
   build:
