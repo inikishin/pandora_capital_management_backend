@@ -1,0 +1,17 @@
+name: ci-pandora-capital-management-api
+
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    - name: Start CI process
+      run: | 
+        echo "Start CI process"
+        echo "Listing files"
+        ls
