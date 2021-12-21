@@ -25,3 +25,11 @@ jobs:
         ls -1 /usr/bin/python* | grep '[2-3].[0-9]$'
         python --version
         python3 --version
+        
+    - name: Checkout project from GitHub
+      uses: actions/checkout@v2
+      
+    - name: Listing files
+      run: | 
+        echo "Listing files:"
+        ls -al
