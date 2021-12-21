@@ -40,5 +40,5 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        source: "manage.py"
+        source: "pandora_capital_management_backend"
         target: "www/api.pandoracapitalmanagement.ru"
