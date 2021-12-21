@@ -1,0 +1,54 @@
+name: ci-pandora-capital-management-api 
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:  
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+
+    steps:
+    - name: Start CI process
+      run: | 
+        echo "Start CI process"
+        echo "Listing files"
+        ls
+        
+    - name: Checkout project from GitHub
+      uses: actions/checkout@v2
+      
+    - name: Listing files
+      run: | 
+        echo "Listing files"
+        ls
+        
+    - name: Python versions
+    - run: |
+        echo "Python versions"
+        ls -1 /usr/bin/python* | grep '[2-3].[0-9]$'
+      
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+        
+    - name: Python versions
+    - run: |
+        echo "Python versions"
+        ls -1 /usr/bin/python* | grep '[2-3].[0-9]$'
+        
+    
+    - name: Install Dependencies
+      run: |
+        python --version
+        python3 --version
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
