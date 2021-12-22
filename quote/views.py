@@ -8,18 +8,21 @@ from .serializers import TickerSerializer, MarketSerializer, TimeframeSerializer
 class MarketViewSet(viewsets.ModelViewSet):
     queryset = Market.objects.all()
     serializer_class = MarketSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['external_id']
 
 
 class MarketTypeViewSet(viewsets.ModelViewSet):
     queryset = MarketType.objects.all()
     serializer_class = MarketTypeSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['external_id']
 
 
 class TimeframeViewSet(viewsets.ModelViewSet):
     queryset = Timeframe.objects.all()
     serializer_class = TimeframeSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['external_id']
 
 
@@ -55,10 +58,12 @@ class QuoteViewSet(viewsets.ModelViewSet):
 class CurrencyViewSet(viewsets.ModelViewSet):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['external_id']
 
 
 class StockExchangeViewSet(viewsets.ModelViewSet):
     queryset = StockExchange.objects.all()
     serializer_class = StockExchangeSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['external_id']
