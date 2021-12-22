@@ -8,37 +8,40 @@ from .serializers import TickerSerializer, MarketSerializer, TimeframeSerializer
 class MarketViewSet(viewsets.ModelViewSet):
     queryset = Market.objects.all()
     serializer_class = MarketSerializer
+    filterset_fields = ['external_id']
 
 
 class MarketTypeViewSet(viewsets.ModelViewSet):
     queryset = MarketType.objects.all()
     serializer_class = MarketTypeSerializer
+    filterset_fields = ['external_id']
 
 
 class TimeframeViewSet(viewsets.ModelViewSet):
     queryset = Timeframe.objects.all()
     serializer_class = TimeframeSerializer
+    filterset_fields = ['external_id']
 
 
 class ShareAdditionalInfoViewSet(viewsets.ModelViewSet):
     queryset = ShareAdditionalInfo.objects.all()
     serializer_class = ShareAdditionalInfoSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['ticker']
+    filterset_fields = ['ticker', 'external_id']
 
 
 class BondAdditionalInfoViewSet(viewsets.ModelViewSet):
     queryset = BondAdditionalInfo.objects.all()
     serializer_class = BondAdditionalInfoSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['ticker', 'short_name']
+    filterset_fields = ['ticker', 'short_name', 'external_id']
 
 
 class TickerViewSet(viewsets.ModelViewSet):
     queryset = Ticker.objects.all()
     serializer_class = TickerSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['market']
+    filterset_fields = ['market', 'external_id']
     search_fields = ['code', 'fullname']
 
 
@@ -46,14 +49,16 @@ class QuoteViewSet(viewsets.ModelViewSet):
     queryset = Quote.objects.all()
     serializer_class = QuoteSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['ticker', 'timeframe', 'datetime']
+    filterset_fields = ['ticker', 'timeframe', 'datetime', 'external_id']
 
 
 class CurrencyViewSet(viewsets.ModelViewSet):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
+    filterset_fields = ['external_id']
 
 
 class StockExchangeViewSet(viewsets.ModelViewSet):
     queryset = StockExchange.objects.all()
     serializer_class = StockExchangeSerializer
+    filterset_fields = ['external_id']

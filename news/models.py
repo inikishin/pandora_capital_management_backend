@@ -10,7 +10,7 @@ class Source(models.Model):
     fullname = models.TextField()
     url = models.TextField()
     parameters = models.TextField()
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f'{self.fullname} (id: {self.id})'
@@ -25,7 +25,7 @@ class Tag(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     tag_name = models.CharField(max_length=100)
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f'{self.tag_name} (id: {self.id})'
@@ -44,7 +44,7 @@ class News(models.Model):
     source = models.ForeignKey(Source, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
     created_at = models.DateTimeField(auto_now_add=True)
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f'{self.text[:50]} (source: {self.source})'
