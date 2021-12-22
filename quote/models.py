@@ -112,7 +112,6 @@ class Quote(models.Model):
 
 
 class BondAdditionalInfo(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     ticker = models.OneToOneField(Ticker, on_delete=models.CASCADE, primary_key=True)
     short_name = models.CharField(max_length=1000)
     code_isin = models.CharField(max_length=100, unique=True)
@@ -140,7 +139,6 @@ class BondAdditionalInfo(models.Model):
 
 
 class ShareAdditionalInfo(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     ticker = models.OneToOneField(Ticker, on_delete=models.CASCADE, primary_key=True)
     change_1w = models.FloatField()
     change_1m = models.FloatField()
