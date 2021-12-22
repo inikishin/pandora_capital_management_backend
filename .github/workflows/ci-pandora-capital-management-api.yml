@@ -45,6 +45,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: "pandora_capital_management_backend,manage.py,passenger_wsgi.py,requirements.txt,readme.md,templates"
+          source: "pandora_capital_management_backend,manage.py,passenger_wsgi.py,requirements.txt,readme.md,templates,news,quote"
           target: "www/api.pandoracapitalmanagement.ru"
           overwrite: true
