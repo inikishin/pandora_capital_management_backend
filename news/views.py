@@ -8,16 +8,18 @@ from .serializers import SourceSerializer, TagSerializer, NewsSerializer
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+    filterset_fields = ['external_id']
 
 
 class SourceViewSet(viewsets.ModelViewSet):
     queryset = Source.objects.all()
     serializer_class = SourceSerializer
+    filterset_fields = ['external_id']
 
 
 class NewsViewSet(viewsets.ModelViewSet):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['source', 'tags']
+    filterset_fields = ['source', 'tags', 'external_id']
     search_fields = ['datetime', 'text']

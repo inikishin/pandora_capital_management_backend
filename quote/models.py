@@ -6,7 +6,7 @@ class Currency(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     code = models.CharField(max_length=100, unique=True)
     fullname = models.CharField(max_length=1000, blank=True, null=True)
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f'{self.code} (id: {self.pk})'
@@ -18,7 +18,7 @@ class Currency(models.Model):
 class Timeframe(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     code = models.CharField(max_length=10, unique=True)
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f'{self.code} (id: {self.pk})'
@@ -32,7 +32,7 @@ class MarketType(models.Model):
     code = models.CharField(max_length=100, unique=True)
     fullname = models.CharField(max_length=1000, null=True, blank=True)
     description = models.CharField(max_length=1000, null=True, blank=True)
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f'{self.code} (id: {self.pk})'
@@ -46,7 +46,7 @@ class StockExchange(models.Model):
     code = models.CharField(max_length=100, unique=True)
     fullname = models.CharField(max_length=1000, null=True, blank=True)
     description = models.CharField(max_length=1000, null=True, blank=True)
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f'{self.code} (id: {self.pk})'
@@ -62,7 +62,7 @@ class Market(models.Model):
     description = models.CharField(max_length=1000, null=True, blank=True)
     type = models.ForeignKey(MarketType, on_delete=models.CASCADE)
     stock_exchange = models.ForeignKey(StockExchange, on_delete=models.CASCADE)
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f'{self.code} (id: {self.pk})'
@@ -78,7 +78,7 @@ class Ticker(models.Model):
     description = models.CharField(max_length=1000, null=True, blank=True)
     site = models.CharField(max_length=500, null=True, blank=True)
     market = models.ForeignKey(Market, on_delete=models.CASCADE)
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     models.UniqueConstraint(fields=['code', 'market'], name='unique_ticker_code_in_market')
 
@@ -99,7 +99,7 @@ class Quote(models.Model):
     low = models.FloatField()
     close = models.FloatField()
     volume = models.FloatField()
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     models.UniqueConstraint(fields=['ticker', 'timeframe', 'datetime'],
                             name='unique_quote_for_ticker_timeframe_datetime')
@@ -129,7 +129,7 @@ class BondAdditionalInfo(models.Model):
     maturity_date = models.DateTimeField(null=True, blank=True)
     next_coupon_date = models.DateTimeField(null=True, blank=True)
     accumulated_coupon_yield = models.FloatField()
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
 
     def __repr__(self):
         return f'{self.ticker.code} (ISIN: {self.code_isin})'
@@ -146,4 +146,4 @@ class ShareAdditionalInfo(models.Model):
     change_6m = models.FloatField()
     change_1y = models.FloatField()
 
-    external_id = models.CharField(max_length=255)
+    external_id = models.CharField(max_length=255, unique=True)
