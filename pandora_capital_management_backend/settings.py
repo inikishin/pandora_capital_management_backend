@@ -21,10 +21,14 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = os.getenv('DEBUG') == 'true'
 
-ALLOWED_HOSTS = ['localhost',
-                 '127.0.0.1',
-                 'api.pandoracapitalmanagement.ru',
-                 'www.api.pandoracapitalmanagement.ru']
+if os.getenv('ENV') == 'dev':
+    ALLOWED_HOSTS = ['localhost',
+                     '127.0.0.1']
+elif os.getenv('ENV') == 'prod':
+    ALLOWED_HOSTS = ['api.pandoracapitalmanagement.ru',
+                     'www.api.pandoracapitalmanagement.ru']
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -141,3 +145,13 @@ STATIC_ROOT = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
+}
